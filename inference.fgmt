@@ -1,0 +1,154 @@
+{
+  "version": 5,
+  "nodes": [
+    {
+      "id": 5,
+      "name": "Stack",
+      "type": "image.stack",
+      "x": 179.4326646728236,
+      "y": 427.65128706626797
+    },
+    {
+      "id": 6,
+      "name": "Out",
+      "type": "core.out",
+      "x": 297,
+      "y": 527
+    },
+    {
+      "id": 7,
+      "name": "Webcam Image",
+      "type": "image.webcamImage",
+      "x": 170.96837416901522,
+      "y": -60.10490811429122
+    },
+    {
+      "id": 8,
+      "name": "Resize",
+      "type": "image.resize",
+      "x": 195.74442763076453,
+      "y": 30.17825125184661
+    },
+    {
+      "id": 9,
+      "name": "Detect Faces",
+      "type": "ml.detectFaces",
+      "x": 332.94757680437704,
+      "y": 208.93738820184095,
+      "values": {
+        "draw mode": {
+          "type": "value",
+          "value": "tesselation"
+        }
+      }
+    },
+    {
+      "id": 10,
+      "name": "ONNX Image Model",
+      "type": "ml.onnxImageModel",
+      "x": 366.4754367631877,
+      "y": 339.6122454659197,
+      "values": {
+        "model": {
+          "type": "value",
+          "value": "generator_epoch_14.onnx"
+        }
+      }
+    },
+    {
+      "id": 11,
+      "name": "Transform",
+      "type": "image.transform",
+      "x": 268.2382465328674,
+      "y": 129.9289630262928,
+      "values": {
+        "scaleX": {
+          "type": "value",
+          "value": 1.3
+        },
+        "scaleY": {
+          "type": "value",
+          "value": 1.3
+        }
+      }
+    },
+    {
+      "id": 12,
+      "name": "Composite",
+      "type": "image.composite",
+      "x": 174.42707751353487,
+      "y": 280.054157983634,
+      "values": {
+        "factor": {
+          "type": "value",
+          "value": 1
+        },
+        "operation": {
+          "type": "value",
+          "value": "lighten"
+        }
+      }
+    }
+  ],
+  "connections": [
+    {
+      "outNode": 7,
+      "outPort": "image",
+      "inNode": 8,
+      "inPort": "in"
+    },
+    {
+      "outNode": 9,
+      "outPort": "out",
+      "inNode": 10,
+      "inPort": "in"
+    },
+    {
+      "outNode": 8,
+      "outPort": "out",
+      "inNode": 11,
+      "inPort": "in"
+    },
+    {
+      "outNode": 11,
+      "outPort": "out",
+      "inNode": 9,
+      "inPort": "in"
+    },
+    {
+      "outNode": 9,
+      "outPort": "out",
+      "inNode": 12,
+      "inPort": "image 2"
+    },
+    {
+      "outNode": 11,
+      "outPort": "out",
+      "inNode": 12,
+      "inPort": "image 1"
+    },
+    {
+      "outNode": 12,
+      "outPort": "out",
+      "inNode": 5,
+      "inPort": "image 1"
+    },
+    {
+      "outNode": 10,
+      "outPort": "out",
+      "inNode": 5,
+      "inPort": "image 2"
+    },
+    {
+      "outNode": 10,
+      "outPort": "out",
+      "inNode": 6,
+      "inPort": "in"
+    }
+  ],
+  "settings": {
+    "oscEnabled": false,
+    "oscPort": 8000
+  },
+  "types": []
+}

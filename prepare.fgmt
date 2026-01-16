@@ -1,0 +1,129 @@
+{
+  "version": 5,
+  "nodes": [
+    {
+      "id": 6,
+      "name": "Out",
+      "type": "core.out",
+      "x": 391.5601138666934,
+      "y": 425.68656986829416
+    },
+    {
+      "id": 11,
+      "name": "Detect Faces",
+      "type": "ml.detectFaces",
+      "x": 447.3120685519375,
+      "y": 227.00846715200024,
+      "values": {
+        "draw mode": {
+          "type": "value",
+          "value": "tesselation"
+        }
+      }
+    },
+    {
+      "id": 12,
+      "name": "Stack",
+      "type": "image.stack",
+      "x": 395.4676274280441,
+      "y": 333.0393096972094
+    },
+    {
+      "id": 13,
+      "name": "Save Image",
+      "type": "image.saveImage",
+      "x": 401.97394658521847,
+      "y": 547.061271909643,
+      "values": {
+        "folder": {
+          "type": "value",
+          "value": "faces_out"
+        },
+        "template": {
+          "type": "value",
+          "value": "image-#####.jpg"
+        }
+      }
+    },
+    {
+      "id": 14,
+      "name": "Webcam Image",
+      "type": "image.webcamImage",
+      "x": 433.2240196460491,
+      "y": -19.904339336851926
+    },
+    {
+      "id": 15,
+      "name": "Resize",
+      "type": "image.resize",
+      "x": 383.4790053859515,
+      "y": 56.6264518325287
+    },
+    {
+      "id": 16,
+      "name": "Transform",
+      "type": "image.transform",
+      "x": 384.94441544852737,
+      "y": 124.98439634428237,
+      "values": {
+        "scaleX": {
+          "type": "value",
+          "value": 1.5
+        },
+        "scaleY": {
+          "type": "value",
+          "value": 1.5
+        }
+      }
+    }
+  ],
+  "connections": [
+    {
+      "outNode": 11,
+      "outPort": "out",
+      "inNode": 12,
+      "inPort": "image 2"
+    },
+    {
+      "outNode": 12,
+      "outPort": "out",
+      "inNode": 6,
+      "inPort": "in"
+    },
+    {
+      "outNode": 6,
+      "outPort": "out",
+      "inNode": 13,
+      "inPort": "in"
+    },
+    {
+      "outNode": 14,
+      "outPort": "image",
+      "inNode": 15,
+      "inPort": "in"
+    },
+    {
+      "outNode": 15,
+      "outPort": "out",
+      "inNode": 16,
+      "inPort": "in"
+    },
+    {
+      "outNode": 16,
+      "outPort": "out",
+      "inNode": 11,
+      "inPort": "in"
+    },
+    {
+      "outNode": 16,
+      "outPort": "out",
+      "inNode": 12,
+      "inPort": "image 1"
+    }
+  ],
+  "settings": {
+    "oscEnabled": false,
+    "oscPort": 8000
+  },
+  "types": []
+}
