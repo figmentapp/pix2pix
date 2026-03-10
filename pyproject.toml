@@ -1,0 +1,14 @@
+[project]
+name = "pix2pix"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "jupyterlab>=4.5.5",
+    "matplotlib>=3.10.8",
+    "onnx>=1.20.1",
+    "torch>=2.10.0",
+    "torchvision>=0.25.0",
+    "tqdm>=4.67.3",
+]
