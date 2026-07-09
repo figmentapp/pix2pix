@@ -9,7 +9,13 @@ https://www.tensorflow.org/tutorials/generative/pix2pix
 ## Scripts
 
 - [train_pix2pix_default.ipynb](./train_pix2pix_default.ipynb): The "vanilla" implementation of pix2pix
-- [train_pix2pix_ccm.ipynb](./train_pix2pix_ccm.ipynb): Optimized version with CCM (Consistency of Conditional Mapping), label smoothing, instance noise, asymmetric learning rates
+- [train_pix2pix_ccm.ipynb](./train_pix2pix_ccm.ipynb): Optimized version. Keeps the fast pix2pix U-Net generator (same realtime inference speed) but trains it with the pix2pixHD recipe plus modern GAN stabilizers:
+  - Multi-scale PatchGAN discriminator with feature-matching loss and LSGAN objective ([pix2pixHD](https://arxiv.org/abs/1711.11585))
+  - Spectral normalization on the discriminator ([Miyato et al. 2018](https://arxiv.org/abs/1802.05957), as in [SPADE](https://arxiv.org/abs/1903.07291))
+  - VGG19 perceptual loss (training-time only, `use_vgg_loss` flag)
+  - EMA of the generator weights; the ONNX export is the EMA model ([Karras et al. 2018](https://arxiv.org/abs/1710.10196))
+  - Linear learning-rate decay over the second half of training (pix2pix/CycleGAN schedule)
+  - CCM (Consistency of Conditional Mapping) loss and decaying instance noise
 - [train_pix2pixhd.ipynb](./train_pix2pixhd.ipynb): Experimental [pix2pixHD](https://github.com/NVIDIA/pix2pixHD) port to ONNX
 
 ## Image Preparation
