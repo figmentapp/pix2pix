@@ -11,6 +11,7 @@ https://www.tensorflow.org/tutorials/generative/pix2pix
 - [train_pix2pix_default.ipynb](./train_pix2pix_default.ipynb): The "vanilla" implementation of pix2pix
 - [train_pix2pix_ccm.ipynb](./train_pix2pix_ccm.ipynb): Optimized version with CCM (Consistency of Conditional Mapping), label smoothing, instance noise, asymmetric learning rates
 - [train_pix2pixhd.ipynb](./train_pix2pixhd.ipynb): Experimental [pix2pixHD](https://github.com/NVIDIA/pix2pixHD) port to ONNX
+- [train_stylegan2_conditional.ipynb](./train_stylegan2_conditional.ipynb): Conditional StyleGAN2 for the same paired data: an encoder feeds the input image into a StyleGAN2 synthesis network and into the mapping network next to `z`. Better faces than pix2pix, and the default configuration runs at 26 fps in Figment. Exports fp32 and fp16 ONNX.
 
 ## Image Preparation
 
